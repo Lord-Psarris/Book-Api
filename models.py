@@ -12,6 +12,16 @@ class Author(Base):
     auth_key = Column(String, unique=True)
 
 
+class User(Base):
+    __tablename__ = "user"
+
+    id = Column(Integer, primary_key=True, index=True)
+    username = Column(String)
+    password = Column(String)
+    email = Column(String)
+    auth_key = Column(String, unique=True)
+
+
 class Book(Base):
     __tablename__ = "books"
 
@@ -24,6 +34,25 @@ class Book(Base):
     is_free = Column(Boolean)
     image_path = Column(String)
     category = Column(String)
+
+
+class PurchasedBooks(Base):
+    __tablename__ = "purchased_books"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(String)
+    book_id = Column(String)
+
+
+class BookPayments(Base):
+    __tablename__ = "book_payments"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(String)
+    book_id = Column(String)
+    price = Column(Integer)
+    ref = Column(String)
+    verified = Column(Boolean)
 
 
 categories = ['mystery', 'history', 'sci-fi', 'fiction', 'action', 'drama', 'horror', 'thriller']
